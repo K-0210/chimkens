@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notebooks Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+        }
+        .right-panel {
+            width: 300px;
+            background-color: #ffffff;
+            border-left: 1px solid #dee2e6;
+            padding: 2rem;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.05);
+        }
+        .notebooks-label {
+            margin-top: 0;
+            color: #ffffff;
+            background-color: #000000;
+            padding: 6px 18px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+        .classes-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .class-card {
+            width: 240px;
+            height: 240px;
+            background-color: rgba(0, 0, 0, 0.05); /* 20% transparent feel */
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+        .class-card:hover {
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+        .class-info h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: #000;
+        }
+        .class-info p {
+            margin: 8px 0 0 0;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .class-teacher {
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: #333;
+        }
+        .navbar {
+            width: 220px;
+            background-color: #000000;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 1.5rem;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        .navbar .logo {
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #333;
+            text-align: center;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #cccccc;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Dashboard</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Notes</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="main-content">
+        <h2 class="notebooks-label">Notebooks</h2>
+        <p>Welcome to your workspace.</p>
+
+        <div class="classes-container">
+            <div class="class-card">
+                <div class="class-info">
+                    <h3>English</h3>
+                    <p>9 - Sapphire 2025-2026</p>
+                </div>
+                <div class="class-teacher">Ms. Simbajon</div>
+            </div>
+            <div class="class-card">
+                <div class="class-info">
+                    <h3>Mathematics</h3>
+                    <p>9 - Sapphire 2025-2026</p>
+                </div>
+                <div class="class-teacher">Ms. Castro</div>
+            </div>
+            <div class="class-card">
+                <div class="class-info">
+                    <h3>Science</h3>
+                    <p>9 - Sapphire 2025-2026</p>
+                </div>
+                <div class="class-teacher">Mrs. Aquilino</div>
+            </div>
+            <div class="class-card">
+                <div class="class-info">
+                    <h3>Filipino</h3>
+                    <p>9 - Sapphire 2025-2026</p>
+                </div>
+                <div class="class-teacher">Ms. Acosta</div>
+            </div>
+            <div class="class-card">
+                <div class="class-info">
+                    <h3>History</h3>
+                    <p>9 - Sapphire 2025-2026</p>
+                </div>
+                <div class="class-teacher">Mr. Hablado</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
