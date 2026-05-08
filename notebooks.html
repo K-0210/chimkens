@@ -107,15 +107,61 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">Dashboard</div>
-        <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Notes</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="index.html">Logout</a></li>
-        </ul>
-    </nav>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-4">
+
+<div class="container-fluid">
+
+
+<a class="navbar-brand" href="index.html"><img src="https://files.orangeapps.ph/disk001/School_Files/1/school-65/school_profile/1724046681-141.png" class="img-fluid d-block mx-auto" style="height: 50px"></a>
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+        <div class="collapse navbar-collapse text-center" id="mynavbar">
+            <ul class="navbar-nav me-3 ms-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link fw-bold text-primary" href="dashboard.html">Dashboard</a>
+                </li>
+
+                <hr class="text-light my-1">
+
+                <li class="nav-item">
+                    <a class="nav-link unselected" href="notebooks.html">Virtual Notebooks</a>
+                </li>
+
+                <hr class="text-light my-1">
+
+                <li class="nav-item">
+                    <a class="nav-link unselected" href="tasks.html">Tasks</a>
+                </li>
+
+                <hr class="text-light my-1">
+
+                 <li class="nav-item">
+                    <a class="nav-link unselected" href="profile.html">Profile</a>
+                </li>
+
+                <hr class="text-light my-1">
+
+                 <li class="nav-item">
+                    <a class="nav-link unselected" href="index.html">Log out</a>
+                </li>
+
+            </ul>
+
+ <form class="d-flex">
+ <input class="form-control me-2" type="text" placeholder="Search">
+ <button class="btn btn-info" type="button">🔎</button>
+ </form>
+
+        </div>
+
+ </div>
+
+</nav>
+    
     <div class="main-content">
         <h2 class="notebooks-label">Notebooks</h2>
         <p>Welcome to your workspace.</p>
