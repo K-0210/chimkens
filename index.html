@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q4 Seatwork 1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .form-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 320px;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #007bff;
+            box-sizing: border-box;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+     
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 22px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider-round {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 22px;
+        }
+        .slider-round:before {
+            position: absolute;
+            content: "";
+            height: 16px; width: 16px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider-round { background-color: #007bff; }
+        input:checked + .slider-round:before { transform: translateX(22px); }
+
+        .login-toggle-container {
+            flex: 1.5;
+            position: relative;
+            height: 50px;
+            background-color: #007bff;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .login-toggle-container input { opacity: 0; position: absolute; }
+        .login-toggle-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .login-toggle-container:has(input:checked) .login-toggle-label {
+            background-color: #28a745;
+        }
+
+        input[type="button"] {
+            flex: 1;
+            padding: 15px 10px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        input[type="button"]:hover {
+            background-color: #5a6268;
+        }
+        .form-divider {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 1.5rem 0;
+        }
+        .forgot-link {
+            text-align: center;
+        }
+        .forgot-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+        .forgot-link a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        .forgot-link a.disabled {
+            color: #ccc;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="form-container">
+        <h2>Login</h2>
+        <form onsubmit="authenticate(event)">
+            <div class="form-group">
+                <label for="uname">Username</label>
+                <input type="text" id="uname" placeholder="Enter Username" required>
+            </div>
+            <div class="form-group">
+                <label for="pword">Password</label>
+                <input type="password" id="pword" placeholder="Enter Password" required>
+            </div>
+            <div class="checkbox-group">
+                <span>Stay logged in</span>
+                <label class="switch">
+                    <input type="checkbox" id="stay-logged-in">
+                    <span class="slider-round"></span>
+                </label>
+            </div>
+            <div class="button-group">
+                <div class="login-toggle-container" id="login-toggle-box">
+                    <label class="login-toggle-label"><input type="checkbox" id="login-trigger" onchange="handleLoginToggle(this)">Login</label>
+                </div>
+                <input type="button" id="cancel-btn" value="Cancel" onclick="document.querySelector('form').reset()">
+            </div>
+            <hr class="form-divider">
+            <div class="forgot-link">
+                <a href="#" id="forgot-password">Forgot username/password?</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let loginAttempts = 0;
+
+        function lockForm() {
+            
+            document.getElementById("uname").disabled = true;
+            document.getElementById("pword").disabled = true;
+            document.getElementById("stay-logged-in").disabled = true;
+            document.getElementById("forgot-password").classList.add("disabled");
+            
+            
+            const loginTrigger = document.getElementById("login-trigger");
+            loginTrigger.disabled = true;
+            const loginBox = document.getElementById("login-toggle-box");
+            loginBox.style.backgroundColor = "#ccc";
+            loginBox.style.cursor = "not-allowed";
+
+       
+            const cancelBtn = document.getElementById('cancel-btn');
+            cancelBtn.disabled = true;
+            cancelBtn.style.backgroundColor = "#ccc";
+            cancelBtn.style.cursor = "not-allowed";
+        }
+
+        function handleLoginToggle(checkbox) {
+            if (checkbox.checked) {
+                authenticate(new Event('submit'));
+                
+                setTimeout(() => { if(!checkbox.disabled) checkbox.checked = false; }, 1000);
+            }
+        }
+
+        function authenticate(event){
+            event.preventDefault();
+            
+            if (loginAttempts >= 3) {
+                alert("Access denied. You have already reached the maximum number of attempts.");
+                return;
+            }
+
+            const usernameInput = document.getElementById("uname").value;
+            const passwordInput = document.getElementById("pword").value;
+            
+            if(usernameInput === "supercooldude" && passwordInput === "awesomesauce"){
+                alert("Welcome " +  usernameInput + "!");
+                loginAttempts = 0; 
+            } else {
+                loginAttempts++;
+                
+                if (loginAttempts >= 3) {
+                    alert("Incorrect username and/or password. Attempt " + loginAttempts + " of 3. Access denied.");
+                    lockForm();
+                } else {
+                    alert("Incorrect username and/or password. Attempt " + loginAttempts + " of 3");
+                }
+            }
+        }
+    </script>
+
+
+</body>
+</html>
